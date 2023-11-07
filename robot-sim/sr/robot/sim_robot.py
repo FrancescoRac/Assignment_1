@@ -221,22 +221,7 @@ class SimRobot(GameObject):
 
         return [marker_map(obj) for obj in self.arena.objects if object_filter(obj)]
         
-    def seeCenterArena(self, res=(800, 600)):
-        with self.lock:
-            x, y = self.location
-            heading = self.heading
-
-        acq_time = time.time()
-
-        rel_x, rel_y = (-x, -y)
-        polar_coord = PolarCoord(length=hypot(rel_x, rel_y), \
-                                     rot_y=degrees(atan2(rel_y, rel_x) - heading))
-            # TODO: Check polar coordinates are the right way around
-        centre = Point(polar_coord)
-        dist = centre.polar.length 
-        rot_y = centre.polar.rot_y
-        
-        return dist, rot_y
+    
         
 	
 
