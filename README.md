@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Assignment_1
-Research Track 1 - 1st Assignment 
-=======
 Python Robotics Simulator
 ================================
 
@@ -99,4 +95,3 @@ To run the code you can follow this step:
 * clone this repository in your folder to get all the file necessary to run the code.
 * Open the prompt and write "python2 run.py assignment.py".
 * If you want to improve or edit the code you can use editor you prefer. One possible improvement can be make the robot turn toward the center of the arena around the shortest path.
->>>>>>> master
