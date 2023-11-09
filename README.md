@@ -76,22 +76,60 @@ for m in markers:
 
 [sr-api]: https://studentrobotics.org/docs/programming/sr/
 
-In the file assignment.py there are four function:
-* `drive`: this function makes the robot move forward and backward at certain speed;
-* `turn`: this function makes the robot turn controlling two motor speed, in particular setting the speed of one motor opposite to the other one;
-* `find_token`: this function return the code, the distance and the angle between the robot and closest token founded;
-* `seeCenterArena`: this founction return the distance and the angle between the robot and the center of arena.
+# RT1 Assignment
+The aim of this python script is to bring all the boxes, called `token`, together, in this case all the boxes will be released in the center of arena. 
 
-Then there is the Main, which call the functions to bring all the marker in the center of the arena.
+### Initial state
+The following image show the initial state of the robot and the token.
+![InitialState](https://github.com/FrancescoRac/Assignment_1/assets/93876265/1b7a4bfd-64ce-4958-a1da-835b95fa094b)
 
-The following flow chart explain how the code works: 
+### Goal state
+Here is reported the final state of the robot with all the token in the center of the arena.
+![GoalState](https://github.com/FrancescoRac/Assignment_1/assets/93876265/b24042c5-7790-4003-86cd-59f86257e511)
 
-![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/f50f2dcc-4e10-4fce-ad11-c2a5387dea7b)
+
 
 ### How to run the code ###
 
 To run the code you can follow this step:
-* First of all you should have python2 installed, if you don't have click on this link to get it https://www.python.org/downloads/release/python-2718/
-* clone this repository in your folder to get all the file necessary to run the code.
-* Open the prompt and write "python2 run.py assignment.py".
-* If you want to improve or edit the code you can use editor you prefer. One possible improvement can be make the robot turn toward the center of the arena around the shortest path.
+* First of all you should have python2 installed, if you don't have click on this link to get it https://www.python.org/downloads/release/python-2718/;
+* clone this repository in your machine;
+* Execute the script typing "python2 run.py assignment.py" on the terminal.
+
+### Flow chart
+
+![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/fcf7dda9-13c3-44aa-9f9c-a529e95de435)
+
+# Functions and main
+
+### drive(speed, seconds)
+
+This function makes the robot move forward and backward at certain speed.
+
+Takes as parameter the `speed` that will be assigned to the motors and `seconds` which is the time for which the robot is moving at a certain speed.
+
+### turn(speed, seconds)
+
+This function makes the robot turn left or right.
+
+Takes as parameter the `speed` that will be assigned to the motors to turn the robot, positive values turn the robot to the right and negative values turn the robot to the left, and `seconds` which is the time lapse for which the robot turn.
+
+### seeCenterArena()
+
+This founction return the distance and the angle between the robot and the center of arena.
+
+Return `dist_arena` which is the distance to the center of the arena and `rot_arena` which is the angle between the robot and the center of arena.
+
+### find_token(v)
+
+This function return the code, the distance and the angle between the robot and closest token founded.
+
+Takes as parameter `v` which contains the code of the token already brought into the center of the arena.
+
+Returns `dist` which is the distance to the closest marker and `rot_y` which is the angle between the robot and the closest marker.
+
+### main()
+
+Call the function mentioned above to controll the robot with the aim to bring all the token which see in the center of the arena.
+
+Moreover in main you can find some loops to align the robot with the token and the center of arena, to grab the token and release it in the center of arena.
