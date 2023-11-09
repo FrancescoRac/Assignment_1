@@ -86,7 +86,7 @@ Then there is the Main, which call the functions to bring all the marker in the 
 
 The following flow chart explain how the code works: 
 
-%% Put the flow chart hereee
+![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/f50f2dcc-4e10-4fce-ad11-c2a5387dea7b)
 
 ### How to run the code ###
 
