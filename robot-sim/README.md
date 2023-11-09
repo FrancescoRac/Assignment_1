@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Assignment_1
-Research Track 1 - 1st Assignment 
-=======
 Python Robotics Simulator
 ================================
 
@@ -13,8 +9,36 @@ Installing and running
 
 The simulator requires a Python 2.7 installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
 
-Once the dependencies are installed, simply run the `test.py` script to test out the simulator.
+Pygame, unfortunately, can be tricky (though [not impossible](http://askubuntu.com/q/312767)) to install in virtual environments. If you are using `pip`, you might try `pip install hg+https://bitbucket.org/pygame/pygame`, or you could use your operating system's package manager. Windows users could use [Portable Python](http://portablepython.com/). PyPyBox2D and PyYAML are more forgiving, and should install just fine using `pip` or `easy_install`.
 
+## Troubleshooting
+
+When running `python run.py <file>`, you may be presented with an error: `ImportError: No module named 'robot'`. This may be due to a conflict between sr.tools and sr.robot. To resolve, symlink simulator/sr/robot to the location of sr.tools.
+
+On Ubuntu, this can be accomplished by:
+* Find the location of srtools: `pip show sr.tools`
+* Get the location. In my case this was `/usr/local/lib/python2.7/dist-packages`
+* Create symlink: `ln -s path/to/simulator/sr/robot /usr/local/lib/python2.7/dist-packages/sr/`
+
+## Exercise
+-----------------------------
+
+To run one or more scripts in the simulator, use `run.py`, passing it the file names. 
+
+I am proposing you three exercises, with an increasing level of difficulty.
+The instruction for the three exercises can be found inside the .py files (exercise1.py, exercise2.py, exercise3.py).
+
+When done, you can run the program with:
+
+```bash
+$ python run.py exercise1.py
+```
+
+You have also the solutions of the exercises (folder solutions)
+
+```bash
+$ python run.py solutions/exercise1_solution.py
+```
 
 Robot API
 ---------
@@ -79,24 +103,3 @@ for m in markers:
 ```
 
 [sr-api]: https://studentrobotics.org/docs/programming/sr/
-
-In the file assignment.py there are four function:
-* `drive`: this function makes the robot move forward and backward at certain speed;
-* `turn`: this function makes the robot turn controlling two motor speed, in particular setting the speed of one motor opposite to the other one;
-* `find_token`: this function return the code, the distance and the angle between the robot and closest token founded;
-* `seeCenterArena`: this founction return the distance and the angle between the robot and the center of arena.
-
-Then there is the Main, which call the functions to bring all the marker in the center of the arena.
-
-The following flow chart explain how the code works: 
-
-![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/f50f2dcc-4e10-4fce-ad11-c2a5387dea7b)
-
-### How to run the code ###
-
-To run the code you can follow this step:
-* First of all you should have python2 installed, if you don't have click on this link to get it https://www.python.org/downloads/release/python-2718/
-* clone this repository in your folder to get all the file necessary to run the code.
-* Open the prompt and write "python2 run.py assignment.py".
-* If you want to improve or edit the code you can use editor you prefer. One possible improvement can be make the robot turn toward the center of the arena around the shortest path.
->>>>>>> master
