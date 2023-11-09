@@ -75,3 +75,23 @@ for m in markers:
 ```
 
 [sr-api]: https://studentrobotics.org/docs/programming/sr/
+
+In the file assignment.py there are four function:
+* `drive`: this function makes the robot move forward and backward at certain speed;
+* `turn`: this function makes the robot turn controlling two motor speed, in particular setting the speed of one motor opposite to the other one;
+* `find_token`: this function return the code, the distance and the angle between the robot and closest token founded;
+* `seeCenterArena`: this founction return the distance and the angle between the robot and the center of arena.
+
+Then there is the Main, which call the functions to bring all the marker in the center of the arena.
+
+The following flow chart explain how the code works: 
+
+%% Put the flow chart hereee
+
+### How to run the code ###
+
+To run the code you can follow this step:
+* First of all you should have python2 installed, if you don't have click on this link to get it https://www.python.org/downloads/release/python-2718/
+* clone this repository in your folder to get all the file necessary to run the code.
+* Open the prompt and write "python2 run.py assignment.py".
+* If you want to improve or edit the code you can use editor you prefer. One possible improvement can be make the robot turn toward the center of the arena around the shortest path.
