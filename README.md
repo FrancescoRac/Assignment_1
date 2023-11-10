@@ -98,7 +98,8 @@ To run the code you can follow this step:
 
 ### Flow chart
 
-![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/fcf7dda9-13c3-44aa-9f9c-a529e95de435)
+![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/cb62fd24-c451-44f7-a849-2e05f6ae8e2b)
+
 
 # Functions and main
 
