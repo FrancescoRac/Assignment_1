@@ -86,65 +86,44 @@ def seeCenterArena():
         
         return dist_arena, rot_arena
         
-        
-   	
-v = [] # this vector contain the code of the marker grabbed and released in the center of the arena
-dist_arena, rot_arena = seeCenterArena() # look for the center of arena.
+def goToArena(dist_arena, rot_arena, grabbed):
 
-
-while 1:
-
-    dist_arena = dist_arena + 0.5;
-    
-    
-    markers = R.see() 
-    
-    while not markers:
-    	dist_arena, rot_arena = seeCenterArena() # look for the center of the arena
-	turn(-25, 0.1)
-	markers = R.see() # look for markers
-	for m in markers:
-		if m.info.code in v: # markers already seen will not be taken in consideration
-			markers = []
-    	if abs(rot_arena) <= a_th:
-		exit()
+    while (d_arena < dist_arena or 0.4 < abs(rot_arena)) and grabbed is True:
+        	
+        dist_arena, rot_arena = seeCenterArena() # look for the center of the arena
+	    	
+	if rot_arena < -a_th:
+			
+		turn(-10, 0.1) # turn left if the robot can't see the center of arena
+        	
+	elif rot_arena > a_th:
+			
+		turn(+10, 0.1) # turn right if the robot can't see the center of arena
+			
+	elif -a_th<= rot_arena <= a_th: 
+			
+		drive(50, 0.2) # if the robot is well aligned with the token, we go forward
+			
+	if d_arena > dist_arena:
 		
-    code, dist, rot_y = find_token(v)  # we look for markers. 	
-	
-    if dist < d_th:
+		R.release() # release the marker when the robot is in the center of arena
+		grabbed = False
+						
+		drive(-50, 1) # go back 
+			
+		turn(-35, 1) # turn
+        
+def goToMarker(code, dist, rot_y, v):
+
+    dist_arena, rot_arena = seeCenterArena() # look for the center of arena.
     
-    	print("Found it!")
+    if dist < d_th:
     	
-        grabbed = R.grab() # if we are close to the token, we grab it.
+    	grabbed = R.grab() # if we are close to the token, we grab it.
         
         v.append(code) # put into the vector v the code of the marker grabbed.
         
-        print("Gotcha!")
-        
-        while (d_arena < dist_arena or 0.4 < abs(rot_arena)) and grabbed is True:
-        	
-        	dist_arena, rot_arena = seeCenterArena() # look for the center of the arena
-	    	
-	    	if rot_arena < -a_th:
-			
-			turn(-10, 0.1) # turn left if the robot can't see the center of arena
-        	
-		elif rot_arena > a_th:
-			
-			turn(+10, 0.1) # turn right if the robot can't see the center of arena
-			
-		elif -a_th<= rot_arena <= a_th: 
-			
-			drive(50, 0.2) # if the robot is well aligned with the token, we go forward
-			
-		if d_arena > dist_arena:
-		
-			R.release() # release the marker when the robot is in the center of arena
-			grabbed = False
-						
-			drive(-50, 1) # go back 
-			
-			turn(-35, 1) # turn
+        goToArena(dist_arena, rot_arena, grabbed)	
 			    
     elif -a_th<= rot_y <= a_th: # if the robot is well aligned with the token, we go forward
         print("Ah, here we are!.")
@@ -158,3 +137,36 @@ while 1:
         print("Right a bit...")
         turn(+10, 0.1)
         
+
+        
+   	
+v = [] # this vector contain the code of the marker grabbed and released in the center of the arena
+dist_arena, rot_arena = seeCenterArena() # look for the center of arena.
+
+grabbed = R.grab()
+
+while 1:
+
+    dist_arena = dist_arena + 0.5
+    angle = 0
+    
+    markers = R.see() 
+    
+    while not markers:
+    
+    	a = rot_y*180/pi
+    	angle += 360/a
+    	
+	turn(-abs(360/(a*0.4)), 0.1)
+	
+	markers = R.see() # look for markers
+	for m in markers:
+		if m.info.code in v: # markers already seen will not be taken in consideration
+			markers = []
+    	if abs(angle) >= 360:
+    		print("No token founded")
+		exit()
+    	
+    code, dist, rot_y = find_token(v)  # we look for markers. 
+    
+    goToMarker(code, dist, rot_y, v)        
