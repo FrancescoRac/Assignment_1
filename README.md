@@ -98,8 +98,7 @@ To run the code you can follow this step:
 
 ### Flow chart
 
-![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/cb62fd24-c451-44f7-a849-2e05f6ae8e2b)
-
+![ResearchTrack drawio](https://github.com/FrancescoRac/Assignment_1/assets/93876265/17e38215-b4ee-446b-a71b-f5a6d60a0c43)
 
 # Functions and main
 
@@ -129,8 +128,18 @@ Takes as parameter `v` which contains the code of the token already brought into
 
 Returns `dist` which is the distance to the closest marker and `rot_y` which is the angle between the robot and the closest marker.
 
+### goToArena(dist_arena, rot_arena, grabbed)
+
+This function guide the robot towards the center of arena once it is welle aligned and release the token in the center of the arena.
+
+Takes as parameter `dist_arena` which is the distance from the arena, `rot_arena` is the angle between the robot and the center of arena and `grabbed` which is a boolean parameter that is `true` if the robot is holding a token, `false` if the robot is free.
+
+### goToMarker(code, dist, rot_y, v)
+
+This function guide the robot towards the nearest token once that is well aligned.
+
+Takes as parameter `code` which is the code of the nearest token, `dist` the distance from the token, `rot_y` the angle between the robot and the token and `v` which is the list that contains all the code of the token already brought in the center of the arena.
+
 ### main()
 
-Call the function mentioned above to controll the robot with the aim to bring all the token which see in the center of the arena.
-
-Moreover in main you can find some loops to align the robot with the token and the center of arena, to grab the token and release it in the center of arena.
+Call the function mentioned above to controll the robot with the aim to bring all the token which see in the center of the arena, and contain a while loop that is used when the robot doesn't see any token, and so the robot start turning till he does a rotation of 360°, and then if the robot didn't see any token the script stops.
