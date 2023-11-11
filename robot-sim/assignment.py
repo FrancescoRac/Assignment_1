@@ -66,13 +66,11 @@ def find_token(v):
 def seeCenterArena():
 
 	'''
-
 	This function return the distance and the angle between the robot and the center of the arena
 
 	Returns:
 		dist_arena (float): distance of the center of the arena
-		rot_arena (float): angle between the robot and the arena 
-	
+		rot_arena (float): angle between the robot and the arena
 	'''
 	R.see()
         with R.lock:
@@ -87,7 +85,9 @@ def seeCenterArena():
         return dist_arena, rot_arena
         
 def goToArena(dist_arena, rot_arena, grabbed):
-
+    '''
+    This function guide the robot towards the center of the arena
+    '''
     while (d_arena < dist_arena or 0.4 < abs(rot_arena)) and grabbed is True:
         	
         dist_arena, rot_arena = seeCenterArena() # look for the center of the arena
@@ -114,6 +114,10 @@ def goToArena(dist_arena, rot_arena, grabbed):
 		turn(-35, 1) # turn
         
 def goToMarker(code, dist, rot_y, v):
+
+    '''
+    This function call the function goToArena, and guide the robot towards the closest token
+    '''
 
     dist_arena, rot_arena = seeCenterArena() # look for the center of arena.
     
@@ -143,8 +147,6 @@ def goToMarker(code, dist, rot_y, v):
 v = [] # this vector contain the code of the marker grabbed and released in the center of the arena
 dist_arena, rot_arena = seeCenterArena() # look for the center of arena.
 
-grabbed = R.grab()
-
 while 1:
 
     dist_arena = dist_arena + 0.5
@@ -154,7 +156,8 @@ while 1:
     
     while not markers:
     
-    	a = rot_y*180/pi
+    	a = rot_y*180/pi # transform from rad to degree
+    	
     	angle += 360/a
     	
 	turn(-abs(360/(a*0.4)), 0.1)
